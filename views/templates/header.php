@@ -11,7 +11,7 @@
                 </h1>
             </a>
             <p class="header__text"> January 10 - 12, 2026</p>
-            <p class="header__text header__text--format"> Online | On-Site</p>
+            <p class="header__text header__text--format"> On-Site | Online</p>
             <a href="/signup" class="header__button">Buy Pass</a>
         </div>
     </div>
