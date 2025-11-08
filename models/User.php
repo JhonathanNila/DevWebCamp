@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Usuario extends ActiveRecord {
+class User extends ActiveRecord {
     protected static $tabla = 'users';
     protected static $columnasDB = ['id', 'name', 'lastname', 'email', 'password', 'confirm', 'token', 'admin'];
 
@@ -20,8 +20,7 @@ class Usuario extends ActiveRecord {
     public $new_password;
 
     
-    public function __construct($args = [])
-    {
+    public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->name = $args['name'] ?? '';
         $this->lastname = $args['lastname'] ?? '';
