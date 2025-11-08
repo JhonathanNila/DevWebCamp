@@ -1,7 +1,7 @@
 @use 'variables' as v;
 
 /** Media Queries **/
-@mixin telefono {
+@mixin phone {
     @media (min-width: v.$phone) {
         @content;
     }
@@ -21,8 +21,7 @@
         @content;
     }
 }
-
-@mixin boton($bgColor, $textColor) {
+@mixin button($bgColor, $textColor) {
     background-color: $bgColor;
     padding: 1.5rem 4rem;
     color: $textColor;
@@ -34,15 +33,48 @@
     text-align: center;
     width: 100%;
     display: inline-block;
-
     &:hover {
         background-color: darken( $bgColor, 10% );
         cursor: pointer;
     }
 }
-
 @mixin grid($rows, $space) {
     display: grid;
     gap: $space;
     grid-template-columns: repeat($rows, 1fr);
+}
+@mixin container {
+    width: min(95%, 140rem);
+    margin: 0 auto;
+}
+@mixin container-sm {
+    width: min(95%, 60rem);
+    margin: 0 auto;
+}
+@mixin headings {
+    font-family: v.$main-font;
+    font-weight: v.$superBlack;
+    margin: 2rem 0;
+}
+@mixin name-page {
+    @include headings;
+    margin: 6rem 0 3rem 0;
+    text-align: center;
+}
+@mixin responsive_text($min, $max) {
+    font-size: clamp($min, -0.8rem + 10vw ,$max);
+}
+@mixin gradient-text($start, $final) {
+    background: linear-gradient(to right, $start, $final);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@mixin logo {
+    color: v.$white;
+    text-align: center;
+    margin-bottom: 2rem;
+    @include desktop {
+        text-align: left;
+        margin: 0;
+    }
 }

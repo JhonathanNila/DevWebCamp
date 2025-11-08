@@ -10,20 +10,20 @@ class AuthController {
     public static function login(Router $router) {
         $alerts = [];
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $usuario = new User($_POST);
+            $user = new User($_POST);
             $alerts = $user->validateLogin();
             if(empty($alerts)) {
-                $user = Usuario::where('email', $user->email);
+                $user = User::where('email', $user->email);
                 if(!$user || !$user->confirm ) {
                     User::setAlert('error', 'The user does not exist or is not confirmed');
                 } else {
                     if( password_verify($_POST['password'], $user->password) ) {
                         session_start();    
-                        $_SESSION['id'] = $usuario->id;
-                        $_SESSION['name'] = $usuario->name;
-                        $_SESSION['lastname'] = $usuario->lastname;
-                        $_SESSION['email'] = $usuario->email;
-                        $_SESSION['admin'] = $usuario->admin ?? null;
+                        $_SESSION['id'] = $user->id;
+                        $_SESSION['name'] = $user->name;
+                        $_SESSION['lastname'] = $user->lastname;
+                        $_SESSION['email'] = $user->email;
+                        $_SESSION['admin'] = $user->admin ?? null;
                     } else {
                         User::setAlert('error', 'Incorrect password');
                     }
@@ -48,9 +48,9 @@ class AuthController {
         $user = new User;
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user->sync($_POST);
-            $alerts = $user->validar_cuenta();
+            $alerts = $user->validateAccount();
             if(empty($alertas)) {
-                $userExists = Usuario::where('email', $user->email);
+                $userExists = User::where('email', $user->email);
                 if($userExists) {
                     User::setAlert('error', 'The user is already registered');
                     $alerts = User::getAlerts();
@@ -103,7 +103,7 @@ class AuthController {
         if(!$token) header('Location: /');
         $user = User::where('token', $token);
         if(empty($user)) {
-            User::setAlerta('error', 'Invalid token, please try again');
+            User::setAlert('error', 'Invalid token, please try again');
             $valid_token = false;
         }
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
