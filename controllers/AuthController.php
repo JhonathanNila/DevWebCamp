@@ -24,6 +24,11 @@ class AuthController {
                         $_SESSION['lastname'] = $user->lastname;
                         $_SESSION['email'] = $user->email;
                         $_SESSION['admin'] = $user->admin ?? null;
+                        if($user->admin) {
+                            header('Location: /admin/dashboard');
+                        } else {
+                            header('Location: /register');
+                        }
                     } else {
                         User::setAlert('error', 'Incorrect password');
                     }
@@ -40,7 +45,7 @@ class AuthController {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION = [];
-            header('Location: /');
+            header('Location: /login');
         }
     }
     public static function signup(Router $router) {
@@ -49,7 +54,7 @@ class AuthController {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user->sync($_POST);
             $alerts = $user->validateAccount();
-            if(empty($alertas)) {
+            if(empty($alerts)) {
                 $userExists = User::where('email', $user->email);
                 if($userExists) {
                     User::setAlert('error', 'The user is already registered');
@@ -86,7 +91,7 @@ class AuthController {
                     $user->save();
                     $email = new Email( $user->email, $user->name, $user->token );
                     $email->sendInstructions();
-                    $alerts['succes'][] = 'We’ve sent the instructions to your email';
+                    $alerts['success'][] = 'We’ve sent the instructions to your email';
                 } else {
                     $alerts['error'][] = 'The user does not exist or is not confirmed';
                 }
@@ -114,7 +119,7 @@ class AuthController {
                 $user->token = null;
                 $result = $user->save();
                 if($result) {
-                    header('Location: /');
+                    header('Location: /login');
                 }
             }
         }
@@ -135,7 +140,7 @@ class AuthController {
         if(!$token) header('Location: /');
         $user = User::where('token', $token);
         if(empty($user)) {
-            User::setAlert('error', 'Invalid token');
+            User::setAlert('error', 'Invalid token, the account was not confirmed');
         } else {
             $user->confirm = 1;
             $user->token = '';
@@ -144,7 +149,7 @@ class AuthController {
             User::setAlert('success', 'Account verified successfully');
         }
         $router->render('auth/confirm-account', [
-            'title' => 'Confirm your account DevWebcamp',
+            'title' => 'Account confirmed',
             'alerts' => User::getAlerts()
         ]);
     }

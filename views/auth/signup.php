@@ -1,7 +1,10 @@
 <main class="auth">
     <h2 class="auth__heading"><?php echo $title; ?></h2>
     <p class="auth__text">Sign up on DevWebCamp</p>
-    <form action="" class="form">
+    <?php 
+        require_once __DIR__ . '/../templates/alerts.php';
+    ?>
+    <form action="/signup" class="form" method="POST">
         <div class="form__field">
             <label for="name" class="form__label">Name</label>
             <input 
@@ -10,6 +13,7 @@
                 id="name" 
                 class="form__input"
                 placeholder="Your Name"
+                value="<?php echo $user->name; ?>"
             />
         </div>
         <div class="form__field">
@@ -20,6 +24,7 @@
                 id="lastname" 
                 class="form__input"
                 placeholder="Your Last name"
+                value="<?php echo $user->lastname; ?>"
             />
         </div>
         <div class="form__field">
@@ -30,6 +35,7 @@
                 id="email" 
                 class="form__input"
                 placeholder="Your Email"
+                value="<?php echo $user->email; ?>"
             />
         </div>
         <div class="form__field">

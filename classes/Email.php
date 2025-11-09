@@ -36,7 +36,7 @@ class Email {
 
         $content = '<html>';
         $content .= "<p><strong>Hello " . $this->name .  "</strong> You have successfully registered your account on DevWebCamp, but it needs to be confirmed</p>";
-        $content .= "<p>Click here: <a href='" . $_ENV['HOST'] . "/confirmAccount?token=" . $this->token . "'>Confirm Account</a>";       
+        $content .= "<p>Click here: <a href='" . $_ENV['HOST'] . "/confirm-account?token=" . $this->token . "'>Confirm Account</a>";       
         $content .= "<p>If you didn’t create this account, you can ignore this message</p>";
         $content .= '</html>';
         $mail->Body = $content;

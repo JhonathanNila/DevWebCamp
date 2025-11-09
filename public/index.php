@@ -15,7 +15,7 @@ $router->get('/login', [AuthController::class, 'login']);
 $router->get('/signup', [AuthController::class, 'signup']);
 $router->get('/forgot', [AuthController::class, 'forgot']);
 $router->get('/reset', [AuthController::class, 'reset']);
-$router->get('/message', [AuthController::class, 'mensaje']);
+$router->get('/message', [AuthController::class, 'message']);
 $router->get('/confirm-account', [AuthController::class, 'confirmAccount']);
 
 //POST

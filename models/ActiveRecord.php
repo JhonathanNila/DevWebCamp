@@ -19,18 +19,15 @@ class ActiveRecord {
     public static function setAlert($type, $message) {
         static::$alerts[$type][] = $message;
     }
-
     // Obtener las alertas
     public static function getAlerts() {
         return static::$alerts;
     }
-
     // Validación que se hereda en modelos
     public function validate() {
         static::$alerts = [];
         return static::$alerts;
     }
-
     // Consulta SQL para crear un objeto en Memoria (Active Record)
     public static function querySQL($query) {
         // Consultar la base de datos
@@ -48,7 +45,6 @@ class ActiveRecord {
         // retornar los resultados
         return $array;
     }
-
     // Crea el objeto en memoria que es igual al de la BD
     protected static function createObject($register) {
         $object = new static;
@@ -60,7 +56,6 @@ class ActiveRecord {
         }
         return $object;
     }
-
     // Identificar y unir los atributos de la BD
     public function atributtes() {
         $atributtes = [];
@@ -70,7 +65,6 @@ class ActiveRecord {
         }
         return $atributtes;
     }
-
     // Sanitizar los datos antes de guardarlos en la BD
     public function sanitizateAtributtes() {
         $atributtes = $this->atributtes();
@@ -80,7 +74,6 @@ class ActiveRecord {
         }
         return $sanitized;
     }
-
     // Sincroniza BD con Objetos en memoria
     public function sync($args=[]) { 
         foreach($args as $key => $value) {
@@ -89,7 +82,6 @@ class ActiveRecord {
             }
         }
     }
-
     // Registros - CRUD
     public function save() {
         $result = '';
@@ -102,36 +94,31 @@ class ActiveRecord {
         }
         return $result;
     }
-
     // Obtener todos los Registros
     public static function all() {
         $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC";
         $result = self::querySQL($query);
         return $result;
     }
-
     // Busca un registro por su id
     public static function find($id) {
         $query = "SELECT * FROM " . static::$table  ." WHERE id = {$id}";
         $result = self::querySQL($query);
         return array_shift( $result ) ;
     }
-
     // Obtener Registros con cierta cantidad
     public static function get($limit) {
         $query = "SELECT * FROM " . static::$table . " LIMIT {$limit} ORDER BY id DESC" ;
         $result = self::querySQL($query);
         return array_shift( $result ) ;
     }
-
     // Busqueda Where con Columna 
     public static function where($column, $value) {
         $query = "SELECT * FROM " . static::$table . " WHERE {$column} = '{$value}'";
         $result = self::querySQL($query);
         return array_shift( $result ) ;
     }
-
-    // crea un nuevo registro
+    // Crea un nuevo registro
     public function create() {
         // Sanitizar los datos
         $atributtes = $this->sanitizateAtributtes();
@@ -152,7 +139,6 @@ class ActiveRecord {
             'id' => self::$db->insert_id
         ];
     }
-
     // Actualizar el registro
     public function update() {
         // Sanitizar los datos
@@ -174,7 +160,6 @@ class ActiveRecord {
         $result = self::$db->query($query);
         return $result;
     }
-
     // Eliminar un Registro por su ID
     public function eliminar() {
         $query = "DELETE FROM "  . static::$table . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
