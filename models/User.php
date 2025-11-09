@@ -3,8 +3,8 @@
 namespace Model;
 
 class User extends ActiveRecord {
-    protected static $tabla = 'users';
-    protected static $columnasDB = ['id', 'name', 'lastname', 'email', 'password', 'confirm', 'token', 'admin'];
+    protected static $table = 'users';
+    protected static $rowsDB = ['id', 'name', 'lastname', 'email', 'password', 'confirm', 'token', 'admin'];
 
     public $id;
     public $name;
@@ -29,9 +29,8 @@ class User extends ActiveRecord {
         $this->password2 = $args['password2'] ?? '';
         $this->confirm = $args['confirm'] ?? 0;
         $this->token = $args['token'] ?? '';
-        $this->admin = $args['admin'] ?? '';
+        $this->admin = $args['admin'] ?? 0;
     }
-
     // Validar el Login de Usuarios
     public function validateLogin() {
         if(!$this->email) {
@@ -44,9 +43,7 @@ class User extends ActiveRecord {
             self::$alerts['error'][] = 'The password cannot be empty';
         }
         return self::$alerts;
-
     }
-
     // Validación para cuentas nuevas
     public function validateAccount() {
         if(!$this->name) {
@@ -59,7 +56,7 @@ class User extends ActiveRecord {
             self::$alerts['error'][] = 'The Email is required';
         }
         if(!$this->password) {
-            self::$alerts['error'][] = 'The password cannot be empty';
+            self::$alerts['error'][] = 'The Password cannot be empty';
         }
         if(strlen($this->password) < 6) {
             self::$alerts['error'][] = 'The Password must containt at least 6 characters';
@@ -69,7 +66,6 @@ class User extends ActiveRecord {
         }
         return self::$alerts;
     }
-
     // Valida un email
     public function validateEmail() {
         if(!$this->email) {
@@ -80,7 +76,6 @@ class User extends ActiveRecord {
         }
         return self::$alerts;
     }
-
     // Valida el Password 
     public function validatePassword() {
         if(!$this->password) {
@@ -91,7 +86,6 @@ class User extends ActiveRecord {
         }
         return self::$alerts;
     }
-
     public function new_password() : array {
         if(!$this->current_password) {
             self::$alerts['error'][] = 'The Current Password cannot be empty';
@@ -104,17 +98,14 @@ class User extends ActiveRecord {
         }
         return self::$alerts;
     }
-
     // Comprobar el password
     public function verify_password() : bool {
         return password_verify($this->current_password, $this->password );
     }
-
     // Hashea el password
     public function hashPassword() : void {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
-
     // Generar un Token
     public function createToken() : void {
         $this->token = uniqid();

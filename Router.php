@@ -2,23 +2,17 @@
 
 namespace MVC;
 
-class Router
-{
+class Router {
     public array $getRoutes = [];
     public array $postRoutes = [];
 
-    public function get($url, $fn)
-    {
+    public function get($url, $fn) {
         $this->getRoutes[$url] = $fn;
     }
-
-    public function post($url, $fn)
-    {
+    public function post($url, $fn) {
         $this->postRoutes[$url] = $fn;
     }
-
-    public function verifyRoutes()
-    {
+    public function verifyRoutes() {
 
         $current_url = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
@@ -35,9 +29,7 @@ class Router
             echo "Page Not Found or Invalid Route";
         }
     }
-
-    public function render($view, $data = [])
-    {
+    public function render($view, $data = []) {
         foreach ($data as $key => $value) {
             $$key = $value; 
         }

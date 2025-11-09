@@ -1,7 +1,8 @@
 <main class="auth">
     <h2 class="auth__heading"><?php echo $title; ?></h2>
     <p class="auth__text">Log in on DevWebCamp</p>
-    <form action="" class="form">
+    <?php require_once __DIR__ . '/../templates/alerts.php'; ?>
+    <form action="/login" class="form" method="POST">
         <div class="form__field">
             <label for="email" class="form__label">Email</label>
             <input 
