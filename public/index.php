@@ -2,8 +2,13 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\AttendeesController;
 use MVC\Router;
 use Controllers\AuthController;
+use Controllers\DashboardController;
+use Controllers\EventsController;
+use Controllers\GiftsController;
+use Controllers\SpeakersController;
 
 $router = new Router();
 
@@ -24,5 +29,16 @@ $router->post('/logout', [AuthController::class, 'logout']);
 $router->post('/signup', [AuthController::class, 'signup']);
 $router->post('/forgot', [AuthController::class, 'forgot']);
 $router->post('/reset', [AuthController::class, 'reset']);
+
+// ADMIN ZONE
+
+// GETS
+$router->get('/admin/dashboard', [DashboardController::class, 'index']);
+$router->get('/admin/speakers', [SpeakersController::class, 'index']);
+$router->get('/admin/events', [EventsController::class, 'index']);
+$router->get('/admin/attendees', [AttendeesController::class, 'index']);
+$router->get('/admin/gifts', [GiftsController::class, 'index']);
+
+// POSTS
 
 $router->verifyRoutes();
