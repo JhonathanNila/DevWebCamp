@@ -35,6 +35,7 @@ $router->post('/reset', [AuthController::class, 'reset']);
 // GETS
 $router->get('/admin/dashboard', [DashboardController::class, 'index']);
 $router->get('/admin/speakers', [SpeakersController::class, 'index']);
+$router->get('/admin/speakers/register', [SpeakersController::class, 'register']);
 $router->get('/admin/events', [EventsController::class, 'index']);
 $router->get('/admin/attendees', [AttendeesController::class, 'index']);
 $router->get('/admin/gifts', [GiftsController::class, 'index']);
