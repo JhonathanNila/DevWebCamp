@@ -419,6 +419,23 @@ h3 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+.form__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.form__list > li {
+  background-color: #007df4;
+  padding: 1rem;
+  border-radius: 1.8rem;
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  font-weight: 700;
+}
 .form__submit {
   background-color: #007df4;
   padding: 1.5rem 4rem;
@@ -774,6 +791,7 @@ h3 {
 .dashboard__grid {
   display: flex;
   flex: 1;
+  overflow-y: auto;
 }
 .dashboard__sidebar {
   background-color: rgb(47.191011236, 64.4943820225, 92.808988764);
@@ -810,6 +828,7 @@ h3 {
 .dashboard__content {
   width: 100%;
   padding: 1rem 1rem 3rem 1rem;
+  overflow-y: scroll;
 }
 @media (min-width: 768px) {
   .dashboard__content {
