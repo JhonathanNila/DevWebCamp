@@ -41,5 +41,7 @@ $router->get('/admin/attendees', [AttendeesController::class, 'index']);
 $router->get('/admin/gifts', [GiftsController::class, 'index']);
 
 // POSTS
+$router->post('/admin/speakers/register', [SpeakersController::class, 'register']);
+
 
 $router->verifyRoutes();
