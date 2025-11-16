@@ -4,6 +4,10 @@
         const tagsDiv = document.querySelector('#tags');
         const tagsInputHidden = document.querySelector('[name="tags"]');
         let tags = [];
+        if(tagsInputHidden.value !== '') {
+            tags = tagsInputHidden.value.split(',');
+            showTags();
+        }
         tagsInput.addEventListener('keypress', saveTag);
         function saveTag(e) {
             if(e.keyCode === 44) {

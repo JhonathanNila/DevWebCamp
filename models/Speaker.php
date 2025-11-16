@@ -6,15 +6,6 @@ class Speaker extends ActiveRecord {
     protected static $table = 'speakers';
     protected static $rowsDB = ['id', 'name', 'lastname', 'city', 'contry', 'photo', 'tags', 'social'];
 
-    public $id;
-    public $name;
-    public $lastname;
-    public $city;
-    public $contry;
-    public $photo;
-    public $tags;
-    public $social;
-
     public function __construct($args = []) {
             $this->id = $args['id'] ?? null;
             $this->name = $args['name'] ?? '';
@@ -46,5 +37,4 @@ class Speaker extends ActiveRecord {
         }
         return self::$alerts;
     }
-
 }
