@@ -36,12 +36,16 @@ $router->post('/reset', [AuthController::class, 'reset']);
 $router->get('/admin/dashboard', [DashboardController::class, 'index']);
 $router->get('/admin/speakers', [SpeakersController::class, 'index']);
 $router->get('/admin/speakers/register', [SpeakersController::class, 'register']);
+$router->get('/admin/speakers/edit', [SpeakersController::class, 'edit']);
+$router->get('/admin/speakers/delete', [SpeakersController::class, 'delete']);
 $router->get('/admin/events', [EventsController::class, 'index']);
 $router->get('/admin/attendees', [AttendeesController::class, 'index']);
 $router->get('/admin/gifts', [GiftsController::class, 'index']);
 
 // POSTS
 $router->post('/admin/speakers/register', [SpeakersController::class, 'register']);
+$router->post('/admin/speakers/edit', [SpeakersController::class, 'edit']);
+$router->post('/admin/speakers/delete', [SpeakersController::class, 'delete']);
 
 
 $router->verifyRoutes();

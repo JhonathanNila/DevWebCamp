@@ -419,6 +419,12 @@ h3 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+.form__text {
+  margin-top: 3rem;
+}
+.form__photo {
+  max-width: 20rem;
+}
 .form__list {
   margin: 0;
   padding: 0;
@@ -877,5 +883,45 @@ h3 {
 .dashboard__form {
   width: min(95%, 80rem);
   margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table__thead {
+  background-color: #1E293B;
+  color: #FFFFFF;
+}
+.table__th {
+  padding: 1rem;
+  text-align: left;
+}
+.table__tr:nth-child(even) {
+  background-color: rgb(219.44, 229.6, 239.76);
+}
+.table__td, .table__td--actions {
+  padding: 1.5rem 1rem;
+}
+.table__td--actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3rem;
+  align-items: center;
+}
+.table__action {
+  all: unset;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.table__action--edit {
+  color: #007df4;
+}
+.table__action--delete {
+  color: rgb(169, 0, 0);
+}
+.table__action:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=app.css.map */

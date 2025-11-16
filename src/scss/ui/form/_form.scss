@@ -56,6 +56,12 @@
             border-bottom-left-radius: 0;
         }
     }
+    &__text {
+        margin-top: 3rem;
+    }
+    &__photo {
+        max-width: 20rem;
+    }
     &__list {
         @include m.tags;
         
