@@ -45,3 +45,6 @@
         <p class="text-center">No speakers registered yet</p>
     <?php endif; ?>
 </div> <!-- .dashboard__container -->
+<?php 
+    echo $pager;
+?>
