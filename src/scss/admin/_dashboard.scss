@@ -26,7 +26,7 @@
     &__nav {
 
     }
-    &__form {
+    &__formButton {
         display: flex;
         justify-content: center;
     }
@@ -36,6 +36,7 @@
     &__grid {
         display: flex;
         flex: 1;
+        overflow-y: auto;
     }
     &__sidebar {
         background-color: lighten(v.$dark-gray, 10%);
@@ -73,8 +74,34 @@
     &__content {
         width: 100%;
         padding: 1rem 1rem 3rem 1rem;
+        overflow-y: scroll;
         @include m.tablet {
             padding: 1rem 5rem 3rem 5rem;
         }
+    }
+    &__container-button {
+        @include m.tablet {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 5rem;
+        }
+    }
+    &__button {
+        @include m.button(v.$blue, v.$white);
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        @include m.tablet {
+            width: auto;
+        }
+    }
+    &__container {
+        @include m.shadow;
+        background-color: v.$white;
+        padding: 2rem;
+        border-radius: 1rem;
+    }
+    &__form {
+        @extend .dashboard__container;
+        @include m.container-md;
     }
 }
