@@ -2,19 +2,32 @@
 
 namespace Controllers;
 
+use Classes\Pager;
 use Intervention\Image\ImageManagerStatic as Image;
 use Model\Speaker;
 use MVC\Router;
 
 class SpeakersController {
     public static function index(Router $router) {
-        $speakers = Speaker::all();
+        $current_page = $_GET['page'];
+        $current_page = filter_var($current_page, FILTER_VALIDATE_INT);
+        if(!$current_page || $current_page < 1) {
+            header('Location: /admin/speakers?page=1');
+        }
+        $entries_per_page = 10;
+        $total = Speaker::total();
+        $pager = new Pager($current_page, $entries_per_page, $total);
+        if($pager->total_pages() < $current_page) {
+            header('Location: /admin/speakers?page=1');
+        }
+        $speakers = Speaker::pagination($entries_per_page, $pager->offset());
         if(!is_admin()) {
             header('Location: /login');
         }
         $router->render('admin/speakers/index', [
             'title' => 'Speakers / Presenters',
-            'speakers' => $speakers
+            'speakers' => $speakers,
+            'pager' => $pager->pager()
         ]);
     }
     public static function register(Router $router) {

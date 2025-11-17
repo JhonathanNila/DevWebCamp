@@ -114,11 +114,22 @@ class ActiveRecord {
         $result = self::querySQL($query);
         return array_shift( $result ) ;
     }
+    public static function pagination($per_page, $offset) {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT {$per_page} OFFSET {$offset}" ;
+        $result = self::querySQL($query);
+        return $result;
+    }
     // Busqueda Where con Columna 
     public static function where($column, $value) {
         $query = "SELECT * FROM " . static::$table . " WHERE {$column} = '{$value}'";
         $result = self::querySQL($query);
         return array_shift( $result ) ;
+    }
+    public static function total() {
+        $query = "SELECT COUNT(*) FROM " . static::$table . ";";
+        $result = self::$db->query($query);
+        $total = $result->fetch_array();
+        return array_shift($total);
     }
     // Crea un nuevo registro
     public function create() {
