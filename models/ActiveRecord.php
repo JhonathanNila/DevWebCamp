@@ -1,5 +1,7 @@
 <?php
 namespace Model;
+
+#[\AllowDynamicProperties]
 class ActiveRecord {
 
     // Base DE DATOS
@@ -112,11 +114,22 @@ class ActiveRecord {
         $result = self::querySQL($query);
         return array_shift( $result ) ;
     }
+    public static function pagination($per_page, $offset) {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT {$per_page} OFFSET {$offset}" ;
+        $result = self::querySQL($query);
+        return $result;
+    }
     // Busqueda Where con Columna 
     public static function where($column, $value) {
         $query = "SELECT * FROM " . static::$table . " WHERE {$column} = '{$value}'";
         $result = self::querySQL($query);
         return array_shift( $result ) ;
+    }
+    public static function total() {
+        $query = "SELECT COUNT(*) FROM " . static::$table . ";";
+        $result = self::$db->query($query);
+        $total = $result->fetch_array();
+        return array_shift($total);
     }
     // Crea un nuevo registro
     public function create() {
@@ -161,7 +174,7 @@ class ActiveRecord {
         return $result;
     }
     // Eliminar un Registro por su ID
-    public function eliminar() {
+    public function delete() {
         $query = "DELETE FROM "  . static::$table . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $result = self::$db->query($query);
         return $result;
