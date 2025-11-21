@@ -97,8 +97,8 @@ class ActiveRecord {
         return $result;
     }
     // Obtener todos los Registros
-    public static function all() {
-        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC";
+    public static function all($sort = 'DESC') {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id {$sort}";
         $result = self::querySQL($query);
         return $result;
     }
@@ -115,7 +115,7 @@ class ActiveRecord {
         return array_shift( $result ) ;
     }
     public static function pagination($per_page, $offset) {
-        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT {$per_page} OFFSET {$offset}" ;
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id ASC LIMIT {$per_page} OFFSET {$offset}" ;
         $result = self::querySQL($query);
         return $result;
     }
@@ -124,6 +124,18 @@ class ActiveRecord {
         $query = "SELECT * FROM " . static::$table . " WHERE {$column} = '{$value}'";
         $result = self::querySQL($query);
         return array_shift( $result ) ;
+    }
+    public static function whereArray($array = []) {
+        $query = "SELECT * FROM " . static::$table . " WHERE ";
+        foreach ($array as $key => $value) {
+            if($key == array_key_last($array)) {
+                $query .= " {$key} = '{$value}';";
+            } else {
+                $query .= " {$key} = '{$value}' AND ";
+            }
+        }
+        $result = self::querySQL($query);
+        return $result;
     }
     public static function total() {
         $query = "SELECT COUNT(*) FROM " . static::$table . ";";
