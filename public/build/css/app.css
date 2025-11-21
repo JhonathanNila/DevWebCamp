@@ -405,19 +405,23 @@ h3 {
   font-size: 1.8rem;
   color: rgba(26, 27, 21, 0.8);
 }
-.form__input, .form__input--social {
+.form__input, .form__input--social, .form__select--social, .form__select {
   padding: 1rem;
   border: 1px solid rgb(57.3221757322, 66.4937238494, 79.6778242678);
   border-radius: 0.5rem;
   border-color: #1E293B;
 }
-.form__input--file {
+.form__input--file, .form__select--file {
   border: none;
 }
-.form__input--social {
+.form__input--social, .form__select--social {
   flex: 1;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+.form__radio {
+  display: flex;
+  gap: 3rem;
 }
 .form__text {
   margin-top: 3rem;
@@ -479,6 +483,44 @@ h3 {
   color: #1a1b15;
   font-size: 1.4rem;
   font-weight: 300;
+}
+
+.time {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .time {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.time__hour, .time__hour--disable, .time__hour--selected {
+  color: #007df4;
+  border: 1px solid #007df4;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+.time__hour:hover, .time__hour--disable:hover, .time__hour--selected:hover {
+  cursor: pointer;
+}
+.time__hour--selected {
+  background-color: #007df4;
+  color: #FFFFFF;
+}
+.time__hour--disable {
+  border: 1px solid #64748B;
+  color: #64748B;
+  opacity: 0.5;
+}
+.time__hour--disable:hover {
+  cursor: not-allowed;
 }
 
 .header {
@@ -969,5 +1011,28 @@ h3 {
   .pager__link--current {
     display: inline;
   }
+}
+
+.speakers-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+.speakers-list__speaker, .speakers-list__speaker--selected {
+  color: #007df4;
+  border: 1px solid #007df4;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.speakers-list__speaker:hover, .speakers-list__speaker--selected:hover {
+  cursor: pointer;
+}
+.speakers-list__speaker--selected {
+  background-color: #007df4;
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=app.css.map */
