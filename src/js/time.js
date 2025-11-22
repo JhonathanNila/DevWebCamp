@@ -11,8 +11,19 @@
         days.forEach(day => day.addEventListener('change', endSearch));
 
         let search = {
-            category_id: '',
-            day: ''
+            category_id: +category.value || '',
+            day: +inputHiddenDay.value || ''
+        }
+
+        if(!Object.values(search).includes('')) {
+            (async () => {
+                await searchEvent();
+                const id = inputHiddenTime.value;
+                const timeSelected = document.querySelector(`[data-time-id="${id}"]`);
+                timeSelected.classList.remove('time__hour--disable');
+                timeSelected.classList.add('time__hour--selected');
+                timeSelected.onclick = selectTime;
+            })();
         }
 
         function endSearch(e) {

@@ -42,6 +42,7 @@ $router->get('/admin/speakers/edit', [SpeakersController::class, 'edit']);
 $router->get('/admin/speakers/delete', [SpeakersController::class, 'delete']);
 $router->get('/admin/events', [EventsController::class, 'index']);
 $router->get('/admin/events/register', [EventsController::class, 'register']);
+$router->get('/admin/events/edit', [EventsController::class, 'edit']);
 $router->get('/admin/attendees', [AttendeesController::class, 'index']);
 $router->get('/admin/gifts', [GiftsController::class, 'index']);
 
@@ -50,9 +51,12 @@ $router->post('/admin/speakers/register', [SpeakersController::class, 'register'
 $router->post('/admin/speakers/edit', [SpeakersController::class, 'edit']);
 $router->post('/admin/speakers/delete', [SpeakersController::class, 'delete']);
 $router->post('/admin/events/register', [EventsController::class, 'register']);
+$router->post('/admin/events/edit', [EventsController::class, 'edit']);
+$router->post('/admin/events/delete', [EventsController::class, 'delete']);
 
 //APIs
 $router->get('/api/events-time', [ApiEvents::class, 'index']);
 $router->get('/api/speakers', [ApiSpeakers::class, 'index']);
+$router->get('/api/speaker', [ApiSpeakers::class, 'speaker']);
 
 $router->verifyRoutes();
