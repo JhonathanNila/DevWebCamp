@@ -19,3 +19,7 @@ h3 {
 [class$="__heading"] {
     @include m.name-page;
 }
+[class$="__description"] {
+    @include m.description-page;
+}
+
