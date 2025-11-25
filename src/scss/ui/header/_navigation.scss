@@ -9,12 +9,13 @@
     }
     &__link {
         color: v.$white;
-        font-size: 2.2rem;
+        font-size: 2rem;
         padding: 2rem;
         font-weight: v.$superBlack;
         text-transform: uppercase;
         text-align: center;
-        &:hover {
+        &:hover,
+        &--current {
             background-color: v.$white;
             color: v.$blue;
         }

@@ -355,6 +355,14 @@ h3 {
   text-align: center;
 }
 
+[class$=__description] {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #1E293B;
+  margin-bottom: 5rem;
+}
+
 .auth {
   width: min(95%, 60rem);
   margin: 0 auto;
@@ -362,6 +370,149 @@ h3 {
 
 .auth__text {
   font-size: 2rem;
+}
+
+.devwebcamp__grid {
+  width: min(95%, 140rem);
+  margin: 0 auto;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .devwebcamp__grid {
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+}
+.devwebcamp__text {
+  line-height: 2;
+}
+
+.ticket-bundles__grid {
+  width: min(95%, 140rem);
+  margin: 0 auto;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .ticket-bundles__grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pass {
+  border: 1px solid rgb(127.050209205, 141.7782426778, 162.949790795);
+  padding: 3rem;
+}
+.pass__name {
+  font-weight: 900;
+  font-size: 2.6rem;
+  margin: 2rem 0;
+}
+.pass:nth-child(2) {
+  order: -1;
+}
+@media (min-width: 768px) {
+  .pass:nth-child(2) {
+    order: unset;
+  }
+}
+.pass__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 2;
+}
+.pass__price {
+  font-size: 6rem;
+  margin: 3rem 0 0 0;
+  color: #007df4;
+  font-size: 900;
+  text-align: center;
+}
+
+.agenda {
+  padding: 5rem 0;
+  width: min(95%, 140rem);
+  margin: 0 auto;
+}
+
+.events__heading {
+  color: #007df4;
+  margin: 5rem 0;
+  text-align: left;
+  font-size: clamp(2rem, -0.8rem + 8vw, 6rem);
+}
+.events__date {
+  color: #64748B;
+  margin: 3rem 0 1rem 0;
+}
+.events--workshops .events__heading {
+  color: #00c8c2;
+}
+.events--workshops .event__info {
+  background-color: #00c8c2;
+}
+.events--workshops .event__info:hover {
+  background-color: rgb(0, 149, 144.53);
+}
+.events .swiper-button-next,
+.events .swiper-button-prev {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.event__time {
+  font-weight: 700;
+}
+.event__info {
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background-color: #007df4;
+  color: #FFFFFF;
+  transition: 300ms background-color ease;
+}
+.event__info:hover {
+  background-color: rgb(0, 98.8729508197, 193);
+}
+.event__name {
+  font-size: 2rem;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.event__intro {
+  font-size: 1.6rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .event__intro {
+    -webkit-line-clamp: 2;
+  }
+}
+.event__speaker-info {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.event__speaker-photo {
+  width: 5rem;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+}
+.event__speaker-name {
+  font-weight: 700;
 }
 
 .form {
@@ -545,16 +696,19 @@ h3 {
     justify-content: flex-end;
   }
 }
-.header__link {
+.header__link, .header__submit {
   all: unset;
   color: #FFFFFF;
   font-size: 1.4rem;
   text-transform: uppercase;
   font-weight: 700;
 }
-.header__link:hover {
+.header__link:hover, .header__submit:hover {
   color: #007df4;
   cursor: pointer;
+}
+.header__form {
+  display: flex;
 }
 .header__content {
   padding-top: 10rem;
@@ -641,6 +795,7 @@ h3 {
   color: #FFFFFF;
   text-align: center;
   margin-bottom: 2rem;
+  white-space: nowrap;
 }
 @media (min-width: 1024px) {
   .bar__logo {
@@ -663,13 +818,13 @@ h3 {
 }
 .navigation__link {
   color: #FFFFFF;
-  font-size: 2.2rem;
+  font-size: 2rem;
   padding: 2rem;
   font-weight: 900;
   text-transform: uppercase;
   text-align: center;
 }
-.navigation__link:hover {
+.navigation__link:hover, .navigation__link--current {
   background-color: #FFFFFF;
   color: #007df4;
 }
@@ -695,6 +850,7 @@ h3 {
   color: #FFFFFF;
   text-align: center;
   margin-bottom: 2rem;
+  white-space: nowrap;
 }
 @media (min-width: 1024px) {
   .footer__logo {
@@ -811,6 +967,7 @@ h3 {
   color: #FFFFFF;
   text-align: center;
   margin-bottom: 2rem;
+  white-space: nowrap;
 }
 @media (min-width: 1024px) {
   .dashboard__logo {

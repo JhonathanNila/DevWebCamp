@@ -1,0 +1,82 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.agenda {
+    padding: 5rem 0;
+    @include m.container;
+}
+.events {
+    $modifier: &;
+    &__heading {
+        color: v.$blue;
+        margin: 5rem 0;
+        text-align: left;
+        font-size: clamp(2rem, -0.8rem + 8vw ,6rem);
+    }
+    &__date {
+        color: v.$gray;
+        margin: 3rem 0 1rem 0;
+    }
+    &--workshops {
+        #{$modifier}__heading {
+            color: v.$lightBlue;
+        }
+        .event__info {
+            background-color: v.$lightBlue;
+            &:hover {
+                background-color: darken(v.$lightBlue, 10%);
+            }
+        }
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: rgba(v.$white, 0.7);
+    }
+}
+.event {
+    &__time {
+        font-weight: v.$bold;
+    }
+    &__info {
+        padding: 2rem;
+        border-radius: 1.2rem;
+        background-color: v.$blue;
+        color: v.$white;
+        transition: 300ms background-color ease;
+        &:hover {
+            background-color: darken(v.$blue, 10%);
+        }
+    }
+    &__name {
+        font-size: 2rem;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    &__intro {
+        font-size: 1.6rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        @include m.tablet {
+            -webkit-line-clamp: 2;
+        }
+    }
+    &__speaker-info {
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__speaker-photo {
+        width: 5rem;
+        background-color: v.$white;
+        border-radius: 50%;
+    }
+    &__speaker-name {
+        font-weight: v.$bold;
+    }
+}

@@ -10,6 +10,7 @@ use Controllers\AuthController;
 use Controllers\DashboardController;
 use Controllers\EventsController;
 use Controllers\GiftsController;
+use Controllers\PagesControllers;
 use Controllers\SpeakersController;
 
 $router = new Router();
@@ -58,5 +59,13 @@ $router->post('/admin/events/delete', [EventsController::class, 'delete']);
 $router->get('/api/events-time', [ApiEvents::class, 'index']);
 $router->get('/api/speakers', [ApiSpeakers::class, 'index']);
 $router->get('/api/speaker', [ApiSpeakers::class, 'speaker']);
+
+// PUBLIC ZONE
+
+// GETs
+$router->get('/', [PagesControllers::class, 'index']);
+$router->get('/devwebcamp', [PagesControllers::class, 'devWebCamp']);
+$router->get('/ticket-bundles', [PagesControllers::class, 'ticketBundles']);
+$router->get('/conferences-workshops', [PagesControllers::class, 'conferencesWorkshops']);
 
 $router->verifyRoutes();
