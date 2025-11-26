@@ -67,5 +67,6 @@ $router->get('/', [PagesControllers::class, 'index']);
 $router->get('/devwebcamp', [PagesControllers::class, 'devWebCamp']);
 $router->get('/ticket-bundles', [PagesControllers::class, 'ticketBundles']);
 $router->get('/conferences-workshops', [PagesControllers::class, 'conferencesWorkshops']);
+$router->get('/404', [PagesControllers::class, 'error']);
 
 $router->verifyRoutes();
