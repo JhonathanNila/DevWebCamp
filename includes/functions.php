@@ -11,7 +11,7 @@ function s($html) : string {
     return $s;
 }
 function current_page($path) : bool {
-    return str_contains($_SERVER['PATH_INFO'], $path) ? true : false;
+    return str_contains($_SERVER['PATH_INFO'] ?? '/', $path) ? true : false;
 }
 function is_auth() : bool {
     if(!isset($_SESSION)) {
@@ -24,4 +24,9 @@ function is_admin() : bool {
         session_start();
     }
     return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
+}
+function aos_animation() : void {
+    $effects = ['fade-up', 'fade-down', 'fade-right', 'fade-left', 'flip-left', 'flip-right', 'zoom-in', 'zoom-in-up', 'zoom-in-down', 'zoom-out'];
+    $effect = array_rand($effects, 1);
+    echo ' data-aos="' . $effects[$effect] . '" ';
 }
