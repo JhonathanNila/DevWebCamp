@@ -90,7 +90,7 @@
     <h2 class="tickets__heading">Tickte Bundles & Prices</h2>
     <p class="tickets__description">DevWebCamp Prices</p>
     <div <?php aos_animation(); ?> class="tickets__grid">
-        <div class="ticket ticket--onSite">
+        <div class="ticket ticket--onsite">
             <h4 class="ticket__logo">&#60;DevWebCamp/></h4>
             <p class="ticket__plan">On-Site Pass</p>
             <p class="ticket__price">$199</p>
