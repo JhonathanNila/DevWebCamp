@@ -11,6 +11,7 @@ use Controllers\DashboardController;
 use Controllers\EventsController;
 use Controllers\GiftsController;
 use Controllers\PagesControllers;
+use Controllers\RegisterController;
 use Controllers\SpeakersController;
 
 $router = new Router();
@@ -68,5 +69,15 @@ $router->get('/devwebcamp', [PagesControllers::class, 'devWebCamp']);
 $router->get('/ticket-bundles', [PagesControllers::class, 'ticketBundles']);
 $router->get('/conferences-workshops', [PagesControllers::class, 'conferencesWorkshops']);
 $router->get('/404', [PagesControllers::class, 'error']);
+
+// BUNDLES, PAYMENTS AND PASSES
+
+// GETs
+$router->get('/register', [RegisterController::class, 'register']);
+$router->get('/pass', [RegisterController::class, 'pass']);
+
+// POSTS
+$router->post('/register/free', [RegisterController::class, 'free']);
+$router->post('/register/payment', [RegisterController::class, 'payment']);
 
 $router->verifyRoutes();

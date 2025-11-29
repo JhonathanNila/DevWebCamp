@@ -9,6 +9,10 @@
             @include m.grid(3, 3rem);
         }
     }
+    &__submit {
+        @include m.button(v.$blue, v.$white);
+        margin-top: 3rem;
+    }
 }
 .pass {
     @include m.card;
