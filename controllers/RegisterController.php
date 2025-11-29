@@ -59,4 +59,27 @@ class RegisterController {
             'register' => $register
         ]);
     }
+    public static function payment(Router $router) {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!is_auth()) {
+                header('Location: /login');
+            }
+            if(empty($_POST)) {
+                echo json_encode([]);
+                return;
+            }
+            $data = $_POST;
+            $data['token'] = substr(md5(uniqid(rand(), true)), 0, 8);
+            $data['user_id'] = $_SESSION['id'];
+            try {
+                $register = new Register($data);
+                $result = $register->save();
+                echo json_encode($result);
+            } catch (\Throwable $th) {
+                echo json_encode([
+                    'result' => 'error'
+                ]);
+            }
+        }
+    }
 }

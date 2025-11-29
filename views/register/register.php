@@ -53,19 +53,23 @@
         },
         createOrder: function(data, actions) {
             return actions.order.create({
-            purchase_units: [{"description":"1","amount":{"currency_code":"USD","value":199}}]
+            purchase_units: [{"description":"DevWebCamp Pass Payment","amount":{"currency_code":"USD","value":199}}]
             });
         },
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(orderData) {
-            // Full available details
-            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-            // Show a success message within this page, e.g.
-            const element = document.getElementById('paypal-button-container');
-            element.innerHTML = '';
-            element.innerHTML = '<h3>Thank you for your payment!</h3>';
-            // Or go to another URL:  actions.redirect('thank_you.html');
-            
+                const data = new FormData();
+                data.append('bundle_id', orderData.purchase_units[0].description);
+                data.append('payment_id', orderData.purchase_units[0].payments.captures[0].id);
+                fetch('/register/payment', {
+                    method: 'POST',
+                    body: data,
+                }).then(response => response.json())
+                  .then(result => {
+                    if(result.result) {
+                        actions.redirect('http://0.0.0.0:3000/register/conferences');
+                    }
+                  });
             });
         },
         onError: function(err) {

@@ -78,5 +78,6 @@ $router->get('/pass', [RegisterController::class, 'pass']);
 
 // POSTS
 $router->post('/register/free', [RegisterController::class, 'free']);
+$router->post('/register/payment', [RegisterController::class, 'payment']);
 
 $router->verifyRoutes();
