@@ -58,18 +58,19 @@
         },
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(orderData) {
-                const data = new FormData();
-                data.append('bundle_id', orderData.purchase_units[0].description);
-                data.append('payment_id', orderData.purchase_units[0].payments.captures[0].id);
+                const dat = new FormData();
+                dat.append('bundle_id', orderData.purchase_units[0].description);
+                dat.append('payment_id', orderData.purchase_units[0].payments.captures[0].id);
                 fetch('/register/payment', {
                     method: 'POST',
-                    body: data,
-                }).then(response => response.json())
-                  .then(result => {
+                    body: dat
+                })
+                .then(response => response.json())
+                .then(result => {
                     if(result.result) {
                         actions.redirect('http://0.0.0.0:3000/register/conferences');
                     }
-                  });
+                });
             });
         },
         onError: function(err) {
