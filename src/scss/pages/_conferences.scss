@@ -51,14 +51,14 @@
         font-size: 2rem;
         margin: 0;
         display: -webkit-box;
-        -webkit-line-clamp: 1;
+        line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
     &__intro {
         font-size: 1.6rem;
         display: -webkit-box;
-        -webkit-line-clamp: 4;
+        line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
         @include m.tablet {
@@ -78,5 +78,13 @@
     }
     &__speaker-name {
         font-weight: v.$bold;
+    }
+    &__add {
+        @include m.button(v.$white, v.$black);
+        margin-top: 1rem;
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     }
 }

@@ -8,7 +8,7 @@
                 <p class="ticket__plan"><?php echo $register->bundle->name; ?></p>
                 <p class="ticket__name"><?php echo $register->user->name . " " . $register->user->lastname; ?></p>
             </div> <!-- .pass__content -->
-            <p class="ticket__code"><?php echo $register->token; ?></p>
+            <p class="ticket__code">#<?php echo $register->token; ?></p>
         </div> <!-- .pass .pass--free -->
     </div> <!-- .virtual-pass -->
 </main> <!-- .page -->
