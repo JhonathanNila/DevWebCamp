@@ -75,7 +75,8 @@
         @include m.button(v.$blue, v.$white);
         width: auto;
         align-self: flex-start;
-        &--register {
+        &--register,
+        &--full {
             width: 100%;
         }
     }

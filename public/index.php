@@ -75,9 +75,11 @@ $router->get('/404', [PagesControllers::class, 'error']);
 // GETs
 $router->get('/register', [RegisterController::class, 'register']);
 $router->get('/pass', [RegisterController::class, 'pass']);
+$router->get('/register/conferences', [RegisterController::class, 'conferences']);
 
 // POSTS
 $router->post('/register/free', [RegisterController::class, 'free']);
 $router->post('/register/payment', [RegisterController::class, 'payment']);
+$router->post('/register/conferences', [RegisterController::class, 'conferences']);
 
 $router->verifyRoutes();

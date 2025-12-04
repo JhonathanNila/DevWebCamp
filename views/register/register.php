@@ -38,6 +38,11 @@
                 <li class="pass__item">Access to the Recordings</li>
             </ul> <!-- .pass__list -->
             <p class="pass__price">$49</p>
+            <div id="smart-button-container">
+                <div style="text-align: center;">
+                    <div id="paypal-button-container--virtual"></div>
+                </div>
+            </div> <!-- #smart-button-container -->
         </div> <!-- .pass -->
     </div> <!-- .ticket-bundles__grid -->
 </main> <!-- .register -->
@@ -53,7 +58,7 @@
         },
         createOrder: function(data, actions) {
             return actions.order.create({
-            purchase_units: [{"description":"DevWebCamp Pass Payment","amount":{"currency_code":"USD","value":199}}]
+            purchase_units: [{"description":"1","amount":{"currency_code":"USD","value":199}}]
             });
         },
         onApprove: function(data, actions) {
@@ -77,6 +82,39 @@
             console.log(err);
         }
         }).render('#paypal-button-container');
+        paypal.Buttons({
+        style: {
+            shape: 'rect',
+            color: 'blue',
+            layout: 'vertical',
+            label: 'pay',
+        },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+            purchase_units: [{"description":"2","amount":{"currency_code":"USD","value":49}}]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                const dat = new FormData();
+                dat.append('bundle_id', orderData.purchase_units[0].description);
+                dat.append('payment_id', orderData.purchase_units[0].payments.captures[0].id);
+                fetch('/register/payment', {
+                    method: 'POST',
+                    body: dat
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if(result.result) {
+                        actions.redirect('http://0.0.0.0:3000/register/conferences');
+                    }
+                });
+            });
+        },
+        onError: function(err) {
+            console.log(err);
+        }
+        }).render('#paypal-button-container--virtual');
     }
     initPayPalButton();
 </script>
