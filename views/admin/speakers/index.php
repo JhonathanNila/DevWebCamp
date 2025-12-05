@@ -42,7 +42,7 @@
             </tbody> <!-- .table__body -->
         </table> <!-- .table -->
     <?php else : ?>
-        <p class="text-center">No speakers registered yet</p>
+        <p class="text-center">No Speakers registered yet</p>
     <?php endif; ?>
 </div> <!-- .dashboard__container -->
 <?php 

@@ -12,7 +12,7 @@ use Model\Speaker;
 use Model\Category;
 use Model\EventsAttendees;
 use Model\Gift;
-use Model\Register;
+use Model\Attendee;
 
 class RegisterController {
     public static function register(Router $router) {
@@ -20,7 +20,7 @@ class RegisterController {
             header('Location: /');
             return;
         }
-        $register = Register::where('user_id', $_SESSION['id']);
+        $register = Attendee::where('user_id', $_SESSION['id']);
         if(isset($register) && ($register->bundle_id === "3" || $register->bundle_id === "2")) {
             header('Location: /pass?id=' . urlencode($register->token));
         }
@@ -37,7 +37,7 @@ class RegisterController {
                 header('Location: /login');
                 return;
             }
-                $register = Register::where('user_id', $_SESSION['id']);
+                $register = Attendee::where('user_id', $_SESSION['id']);
             if(isset($register) && $register->bundle_id === "3") {
                 header('Location: /pass?id=' . urlencode($register->token));
                 return;
@@ -62,7 +62,7 @@ class RegisterController {
             header('Location: /');
             return;
         }
-        $register = Register::where('token', $id);
+        $register = Attendee::where('token', $id);
         if(!$register) {
             header('Location: /');
             return;
@@ -104,7 +104,7 @@ class RegisterController {
             return;
         }
         $user_id = $_SESSION['id'];
-        $register = Register::where('user_id', $user_id);
+        $register = Attendee::where('user_id', $user_id);
         if(isset($register) && $register->bundle_id === "2") {
             header('Location: /pass?id=' . urlencode($register->token));
             return;
@@ -148,7 +148,7 @@ class RegisterController {
                 echo json_encode(['result' => false]);
                 return;
             }
-            $register = Register::where('user_id', $_SESSION['id']);
+            $register = Attendee::where('user_id', $_SESSION['id']);
             if(!isset($register) || $register->bundle_id !== "1") {
                 echo json_encode(['result' => false]);
                 return;
