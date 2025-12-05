@@ -9,6 +9,10 @@ use MVC\Router;
 
 class SpeakersController {
     public static function index(Router $router) {
+        if(!is_admin()) {
+            header('Location: /login');
+            return;
+        }
         $current_page = $_GET['page'];
         $current_page = filter_var($current_page, FILTER_VALIDATE_INT);
         if(!$current_page || $current_page < 1) {
@@ -21,9 +25,6 @@ class SpeakersController {
             header('Location: /admin/speakers?page=1');
         }
         $speakers = Speaker::pagination($entries_per_page, $pager->offset());
-        if(!is_admin()) {
-            header('Location: /login');
-        }
         $router->render('admin/speakers/index', [
             'title' => 'Speakers / Presenters',
             'speakers' => $speakers,

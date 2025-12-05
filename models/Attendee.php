@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Register extends ActiveRecord {
+class Attendee extends ActiveRecord {
     protected static $table = 'attendees';
     protected static $rowsDB = ['id', 'bundle_id', 'payment_id', 'token', 'user_id', 'gift_id'];
 

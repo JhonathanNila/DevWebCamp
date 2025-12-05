@@ -23,9 +23,6 @@
         @include m.logo;
         @include m.responsive_text(2rem, 3rem);
     }
-    &__nav {
-
-    }
     &__formButton {
         display: flex;
         justify-content: center;
@@ -103,5 +100,8 @@
     &__form {
         @extend .dashboard__container;
         @include m.container-md;
+    }
+    &__chart {
+        @include m.container-sm;
     }
 }

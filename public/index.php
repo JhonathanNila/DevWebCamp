@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\ApiEvents;
+use Controllers\ApiGifts;
 use Controllers\ApiSpeakers;
 use Controllers\AttendeesController;
 use MVC\Router;
@@ -60,6 +61,7 @@ $router->post('/admin/events/delete', [EventsController::class, 'delete']);
 $router->get('/api/events-time', [ApiEvents::class, 'index']);
 $router->get('/api/speakers', [ApiSpeakers::class, 'index']);
 $router->get('/api/speaker', [ApiSpeakers::class, 'speaker']);
+$router->get('/api/gifts', [ApiGifts::class, 'index']);
 
 // PUBLIC ZONE
 
